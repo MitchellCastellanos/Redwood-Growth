@@ -31,7 +31,7 @@
   function fallback(msg) {
     show($('div', { class: 'booking-note' },
       $('h2', { class: 'h4 fw-bold mb-3', text: 'Online scheduling isn’t available right now.' }),
-      $('p', { text: msg || 'Please use the chat window at the bottom-right corner of this page. Tell us about the roles you need to fill and we will follow up to schedule your call.' }),
+      $('p', { text: msg || 'Please check back soon.' }),
       $('a', { class: 'btn btn-ghost', href: 'index.html#services', text: 'Review our services' })));
   }
 
@@ -168,7 +168,7 @@
   show($('p', { class: 'text-secondary', text: 'Loading available times…' }));
   loadSlots().then((d) => {
     state.slots = d.slots; state.biz = d.timezone; state.minutes = d.slotMinutes;
-    if (!d.configured || !d.slots.length) return fallback(d.configured ? 'There are no open times right now. Please use the chat window at the bottom-right corner of this page and we will arrange a time with you.' : undefined);
+    if (!d.configured || !d.slots.length) return fallback(d.configured ? 'There are no open times right now. Please check back soon.' : undefined);
     renderPicker();
   }).catch(() => fallback());
 })();

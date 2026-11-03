@@ -13,7 +13,7 @@ Marketing site for **REDWOOD GROWTH — Staffing & Workforce Solutions in Mexico
 3. The visitor books; the server re-checks the slot, stores it, and returns the meeting link on screen (+ a downloadable `.ics`). A database constraint makes double-booking impossible, even with simultaneous requests.
 4. The admin sees every booking in the panel. **No emails are sent** (add Resend or similar later if wanted).
 
-Until a meeting link is saved in the panel, the booking page shows a "scheduling isn't available" message with the chat widget as fallback.
+Until a meeting link is saved in the panel, the booking page shows a "scheduling isn't available" message. The old LeadConnector chat widget was removed from the site.
 
 ## Environment variables (Vercel → Settings → Environment Variables, Production **and** Preview)
 

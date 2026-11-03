@@ -317,7 +317,7 @@ a { color: var(--teal); }
 .footer-logo { height: 42px; width: auto; margin-bottom: 14px; }
 .footer-bottom { margin-top: 40px; padding-top: 22px; border-top: 1px solid rgba(255,255,255,0.12); display: flex; flex-wrap: wrap; gap: 14px 24px; justify-content: space-between; align-items: center; font-size: 0.8rem; }
 .gaban-credit { display: inline-flex; align-items: center; gap: 10px; }
-.gaban-credit-logo { height: 28px; width: 28px; border-radius: 6px; object-fit: contain; background: #fff; }
+.gaban-credit-logo { height: 30px; width: 30px; object-fit: contain; }
 
 /* ---------- Inner pages (booking, legal, 404) ---------- */
 .page-hero { background: linear-gradient(180deg, #f6f8fa, #fff); padding: 64px 0 40px; }
@@ -358,3 +358,8 @@ a { color: var(--teal); }
 .hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
 .booking-done .done-icon { width: 52px; height: 52px; display: grid; place-items: center; border-radius: 50%; background: var(--starter); color: #fff; font-size: 1.6rem; margin-bottom: 14px; }
 .booking-done a { word-break: break-all; }
+
+/* ---------- Footer extras ---------- */
+.footer-left { display: inline-flex; flex-wrap: wrap; align-items: center; gap: 6px 20px; }
+.staff-link { display: inline-flex; align-items: center; gap: 6px; font-size: 0.78rem; opacity: 0.85; }
+.staff-link i { font-size: 0.8rem; }
