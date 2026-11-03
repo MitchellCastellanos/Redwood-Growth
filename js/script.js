@@ -1,45 +1,68 @@
+/* Redwood Growth — site behavior (Bootstrap handles collapse + accordion) */
 document.addEventListener("DOMContentLoaded", () => {
+  // Footer year
+  const year = document.getElementById("year");
+  if (year) year.textContent = new Date().getFullYear();
 
-  // ===== NAVBAR MOBILE FIX (links + botones) =====
-  const navLinks = document.querySelectorAll(
-    ".navbar .nav-link, .navbar .btn"
-  );
-  const navbarCollapse = document.querySelector(".navbar-collapse");
-  const navbar = document.querySelector(".navbar");
+  // Header shadow on scroll
+  const header = document.getElementById("siteHeader");
+  const onScroll = () => header && header.classList.toggle("scrolled", window.scrollY > 8);
+  onScroll();
+  window.addEventListener("scroll", onScroll, { passive: true });
 
-  navLinks.forEach((link) => {
-    link.addEventListener("click", () => {
-      if (navbarCollapse && navbarCollapse.classList.contains("show")) {
-        const bsCollapse =
-          bootstrap.Collapse.getInstance(navbarCollapse) ||
-          new bootstrap.Collapse(navbarCollapse, { toggle: false });
+  // Close mobile nav after choosing a link
+  const nav = document.getElementById("mainNav");
+  if (nav && window.bootstrap) {
+    nav.querySelectorAll("a").forEach((a) =>
+      a.addEventListener("click", () => {
+        if (nav.classList.contains("show")) bootstrap.Collapse.getOrCreateInstance(nav).hide();
+      })
+    );
+  }
 
-        bsCollapse.hide();
-      }
-    });
-  });
+  // Active nav link while scrolling (home page only)
+  const links = [...document.querySelectorAll('.navbar-nav .nav-link[href^="#"]')];
+  const targets = links.map((l) => document.querySelector(l.getAttribute("href"))).filter(Boolean);
+  if ("IntersectionObserver" in window && targets.length) {
+    const io = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting) {
+            links.forEach((l) => {
+              const on = l.getAttribute("href") === "#" + e.target.id;
+              l.classList.toggle("active", on);
+              on ? l.setAttribute("aria-current", "true") : l.removeAttribute("aria-current");
+            });
+          }
+        });
+      },
+      { rootMargin: "-45% 0px -50% 0px" }
+    );
+    targets.forEach((t) => io.observe(t));
+  }
 
-  // ===== NAVBAR SCROLL EFFECT =====
-  const handleNavbarScroll = () => {
-    if (!navbar) return;
+  // Subtle reveal on scroll (respects reduced motion via CSS)
+  const reveals = document.querySelectorAll(".reveal");
+  if ("IntersectionObserver" in window && reveals.length) {
+    const ro = new IntersectionObserver(
+      (entries) => entries.forEach((e) => { if (e.isIntersecting) { e.target.classList.add("in"); ro.unobserve(e.target); } }),
+      { threshold: 0.12 }
+    );
+    reveals.forEach((r) => ro.observe(r));
+  } else {
+    reveals.forEach((r) => r.classList.add("in"));
+  }
 
-    if (window.scrollY > 20) {
-      navbar.classList.add("scrolled");
-    } else {
-      navbar.classList.remove("scrolled");
-    }
-  };
-
-  handleNavbarScroll();
-  window.addEventListener("scroll", handleNavbarScroll);
-
-
-  // ===== CRM LOGIN LINKS (Portal Login) =====
-  const crmLinks = document.querySelectorAll(".crm-login-link");
-
-  crmLinks.forEach((link) => {
-    link.setAttribute("target", "_blank");
-    link.setAttribute("rel", "noopener noreferrer");
-  });
-
+  // Comparison table: show a scroll affordance while more content is off-screen
+  const shell = document.getElementById("compareShell");
+  const scroller = document.getElementById("compareScroll");
+  if (shell && scroller) {
+    const update = () => {
+      const more = scroller.scrollWidth - scroller.clientWidth - scroller.scrollLeft > 4;
+      shell.classList.toggle("can-scroll", more);
+    };
+    update();
+    scroller.addEventListener("scroll", update, { passive: true });
+    window.addEventListener("resize", update);
+  }
 });

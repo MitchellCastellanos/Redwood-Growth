@@ -1,0 +1,18 @@
+{
+  "name": "redwood-growth",
+  "private": true,
+  "type": "module",
+  "description": "Redwood Growth website (static) + booking API (Vercel Functions, Neon Postgres)",
+  "scripts": {
+    "dev": "node scripts/dev.mjs",
+    "hash": "node scripts/hash-password.mjs",
+    "test": "node --test tests/*.test.js"
+  },
+  "dependencies": {
+    "@neondatabase/serverless": "^1.0.2",
+    "luxon": "^3.7.1"
+  },
+  "devDependencies": {
+    "@electric-sql/pglite": "^0.5.14"
+  }
+}

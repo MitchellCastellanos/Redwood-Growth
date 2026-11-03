@@ -1,0 +1,19 @@
+.admin-body { background: var(--gray-50); min-height: 100vh; }
+.admin-top { background: #fff; border-bottom: 1px solid var(--gray-200); }
+.login-card { max-width: 380px; margin: 56px auto; background: #fff; border: 1px solid var(--gray-200); border-radius: var(--radius); box-shadow: var(--shadow-md); padding: 28px; }
+.nav-tabs .nav-link { color: var(--navy); font-weight: 600; }
+.nav-tabs .nav-link.active { color: var(--starter); border-bottom-color: #fff; }
+.settings-form { max-width: 640px; background: #fff; border: 1px solid var(--gray-200); border-radius: var(--radius); padding: 24px; }
+.day-row { display: grid; grid-template-columns: 110px 1fr; gap: 12px; padding: 12px 0; border-bottom: 1px solid var(--gray-200); align-items: start; }
+.day-row:last-child { border-bottom: 0; }
+.day-name { font-weight: 700; color: var(--navy); padding-top: 6px; }
+.win { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-bottom: 6px; }
+.win input[type=time], .ex-row input[type=time], .ex-row input[type=date] { width: auto; }
+.week-card { background: #fff; border: 1px solid var(--gray-200); border-radius: var(--radius); padding: 4px 18px; }
+.ex-row { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; background: #fff; border: 1px solid var(--gray-200); border-radius: var(--radius-sm); padding: 10px 12px; margin-bottom: 8px; }
+.b-card { background: #fff; border: 1px solid var(--gray-200); border-radius: var(--radius); padding: 14px 16px; margin-bottom: 10px; display: flex; flex-wrap: wrap; gap: 8px 24px; justify-content: space-between; align-items: flex-start; }
+.b-card.cancelled { opacity: .6; }
+.b-when { font-weight: 700; color: var(--navy); }
+.b-meta { font-size: .88rem; color: var(--gray-700); }
+.b-notes { font-size: .88rem; margin-top: 6px; white-space: pre-wrap; }
+@media (max-width: 575.98px) { .day-row { grid-template-columns: 1fr; } .day-name { padding-top: 0; } }
