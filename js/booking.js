@@ -31,8 +31,10 @@
   function fallback(msg) {
     show($('div', { class: 'booking-note' },
       $('h2', { class: 'h4 fw-bold mb-3', text: 'Online scheduling isn’t available right now.' }),
-      $('p', { text: msg || 'Please check back soon.' }),
-      $('a', { class: 'btn btn-ghost', href: 'index.html#services', text: 'Review our services' })));
+      $('p', { text: msg || 'Please check back soon, or email us and we will arrange a time with you.' }),
+      $('div', { class: 'd-flex flex-wrap gap-2' },
+        $('a', { class: 'btn btn-brand', href: 'mailto:contact@redwoodgrowth.io', text: 'Email contact@redwoodgrowth.io' }),
+        $('a', { class: 'btn btn-ghost', href: 'index.html#services', text: 'Review our services' }))));
   }
 
   async function loadSlots() {
@@ -168,7 +170,7 @@
   show($('p', { class: 'text-secondary', text: 'Loading available times…' }));
   loadSlots().then((d) => {
     state.slots = d.slots; state.biz = d.timezone; state.minutes = d.slotMinutes;
-    if (!d.configured || !d.slots.length) return fallback(d.configured ? 'There are no open times right now. Please check back soon.' : undefined);
+    if (!d.configured || !d.slots.length) return fallback(d.configured ? 'There are no open times right now. Please check back soon, or email us and we will arrange a time with you.' : undefined);
     renderPicker();
   }).catch(() => fallback());
 })();
