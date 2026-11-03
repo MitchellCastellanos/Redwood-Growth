@@ -23,6 +23,8 @@ Until a meeting link is saved in the panel, the booking page shows a "scheduling
 | `SESSION_SECRET` | Signs admin session cookies (32+ chars) | `openssl rand -hex 32` |
 | `ADMIN_PASSWORD_HASH` | Bootstrap admin password (hashed) | `npm run hash -- "choose a long password"` and paste the output. After first login the password can be changed from the panel's **Password** tab (stored hashed in the DB, takes over from this variable). |
 
+**Status:** all three are already configured in the Vercel project (Production + Preview, Sensitive). The initial admin password is a temporary one handed over privately; **change it from the panel's Password tab on first login.** Values can't be read back from Vercel; to rotate one, upsert it and redeploy.
+
 Mark all three as **Sensitive**. Never commit them. Preview and Production share the same database unless you create a separate Neon branch for Preview.
 
 ## Database
