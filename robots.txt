@@ -1,5 +1,7 @@
 User-agent: *
 Allow: /
 Disallow: /Backup/
+Disallow: /admin/
+Disallow: /api/
 
 Sitemap: https://redwoodgrowth.io/sitemap.xml

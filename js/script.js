@@ -65,20 +65,4 @@ document.addEventListener("DOMContentLoaded", () => {
     scroller.addEventListener("scroll", update, { passive: true });
     window.addEventListener("resize", update);
   }
-
-  // Booking page: embed the calendar only when a real booking URL is configured
-  const slot = document.getElementById("bookingEmbed");
-  if (slot) {
-    const url = (slot.dataset.bookingUrl || "").trim();
-    const fallback = document.getElementById("bookingFallback");
-    if (/^https:\/\//i.test(url)) {
-      const f = document.createElement("iframe");
-      f.src = url;
-      f.title = "Book a call with Redwood Growth";
-      f.className = "booking-frame";
-      f.loading = "lazy";
-      slot.appendChild(f);
-      if (fallback) fallback.hidden = true;
-    }
-  }
 });
