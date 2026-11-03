@@ -17,3 +17,4 @@
 .b-meta { font-size: .88rem; color: var(--gray-700); }
 .b-notes { font-size: .88rem; margin-top: 6px; white-space: pre-wrap; }
 @media (max-width: 575.98px) { .day-row { grid-template-columns: 1fr; } .day-name { padding-top: 0; } }
+.warn-box { border-left: 4px solid #b3261e; background: #fdecea; color: #5f1410; padding: 14px 18px; border-radius: var(--radius-sm); }

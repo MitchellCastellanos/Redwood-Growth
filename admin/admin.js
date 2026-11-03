@@ -85,6 +85,14 @@ async function loadBookings() {
 }
 
 /* ---------- Availability ---------- */
+let meetingUrl = '';
+// Visitors only see bookable times if there is a meeting link AND at least one open window.
+function updateWarnings() {
+  const hasHours = rules.length > 0 || exceptions.some((e) => e.start && e.end);
+  $('availWarn').hidden = hasHours;
+  $('linkWarn').hidden = !!meetingUrl.trim();
+}
+
 let rules = []; // {weekday, start, end}
 let exceptions = []; // {date, start, end} ; start/end '' = closed all day
 
@@ -105,6 +113,7 @@ function renderWeek() {
         h('button', { type: 'button', class: 'btn btn-sm btn-ghost', text: '+ Add hours', onclick: () => { rules.push({ weekday: wd, start: '09:00', end: '17:00' }); renderWeek(); } }))));
   });
   $('weekEditor').replaceChildren(card);
+  updateWarnings();
 }
 
 function renderEx() {
@@ -120,6 +129,7 @@ function renderEx() {
       s, h('span', { text: 'to' }), e2,
       h('button', { type: 'button', class: 'btn btn-sm btn-ghost', 'aria-label': 'Remove date', text: '✕', onclick: () => { exceptions.splice(idx, 1); renderEx(); } }));
   }));
+  updateWarnings();
 }
 
 $('presetBtn').addEventListener('click', () => { rules = [1, 2, 3, 4, 5].map((weekday) => ({ weekday, start: '09:00', end: '17:00' })); renderWeek(); });
@@ -141,6 +151,7 @@ async function loadSettings() {
   const s = await api('settings');
   $('s_slot').value = s.slot_minutes; $('s_buffer').value = s.buffer_minutes; $('s_notice').value = s.min_notice_hours;
   $('s_horizon').value = s.horizon_days; $('s_provider').value = s.meeting_provider; $('s_url').value = s.meeting_url;
+  meetingUrl = s.meeting_url; updateWarnings();
 }
 $('settingsForm').addEventListener('submit', guard(async (e) => {
   e.preventDefault();
@@ -148,6 +159,7 @@ $('settingsForm').addEventListener('submit', guard(async (e) => {
     slot_minutes: $('s_slot').value, buffer_minutes: $('s_buffer').value, min_notice_hours: $('s_notice').value,
     horizon_days: $('s_horizon').value, meeting_provider: $('s_provider').value, meeting_url: $('s_url').value,
   });
+  meetingUrl = $('s_url').value; updateWarnings();
   toast('Settings saved');
 }));
 
