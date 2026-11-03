@@ -27,14 +27,14 @@ Site stack: static HTML + Bootstrap 5.3 + Bootstrap Icons (GitHub Pages, `CNAME`
 Logo concept: the redwood is modernized into three stacked, evenly weighted chevrons (tree + upward growth) on a short trunk; wordmark set in Montserrat ExtraBold/Bold with wide tracking on "GROWTH". Light = navy `#142B45` text with green/teal tiers; dark = white text with lighter green tiers; icon-only variant for favicon and small sizes.
 Interface icons, the geometric hero details, and the comparison table are CSS/Bootstrap Icons — no images needed.
 
-## C. Still needed: photography (not generated — no image generator is available in this environment)
+## C. Photography — delivered and integrated
 
-| Asset | Section | Purpose | Aspect ratio | Recommended size | Format | Filename | Destination | Priority |
-|---|---|---|---|---|---|---|---|---|
-| Hero team photo | Hero | Natural workforce photography beside the headline; cropped by an angular clip-path with a green accent | 3:2 landscape (displayed ≈1.1:1, subjects must stay in the right-center) | 1800×1200 | JPG, quality ~82, under 300 KB | `hero-team.jpg` | `assets/img/` | **High** |
-| Why Mexico photo | Why Mexico | Guadalajara urban/architectural imagery; not touristy | 4:3 landscape | 1600×1200 | JPG, quality ~82, under 250 KB | `why-mexico-guadalajara.jpg` | `assets/img/` | **High** |
+| Asset | Section | File | Notes |
+|---|---|---|---|
+| Hero team photo | Hero | `assets/img/hero-team.jpg` (1536×1024, ~145 KB) | Uploaded as a PNG with a `.jpg` name; converted to a real progressive JPEG. Cropped by an angular clip-path; `object-position` keeps the subject in frame. |
+| Why Mexico photo | Why Mexico | `assets/img/why-mexico-guadalajara.jpg` (1448×1086, ~300 KB) | Same conversion. Lazy-loaded. |
 
-Both `<img>` tags already exist in `index.html` with the exact filenames above, correct `width`/`height`, `alt` text, and lazy loading (hero is eager + `fetchpriority="high"`). Until the files exist the tags remove themselves and a navy/teal gradient panel with the green geometric accents is shown instead (this produces one harmless 404 in the console per missing file). Drop the files in and nothing else needs to change.
+Prompts used are kept below for regenerating or extending the set.
 
 ## D. Image-generation prompts (format from the `image-prompts` skill — paste the whole block into a new ChatGPT chat)
 
